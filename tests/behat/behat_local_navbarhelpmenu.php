@@ -36,7 +36,6 @@ use Behat\Mink\Exception\ExpectationException;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class behat_local_navbarhelpmenu extends behat_base {
-
     /**
      * Asserts that the help menu is present in the nav bar.
      *
@@ -179,7 +178,8 @@ class behat_local_navbarhelpmenu extends behat_base {
         string $position,
         string $expectedtitle,
         string $expectedlink,
-        string $expectedlinktarget): void {
+        string $expectedlinktarget
+    ): void {
 
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';

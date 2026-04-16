@@ -28,14 +28,20 @@ defined('MOODLE_INTERNAL') || die();
 
 if ($hassiteconfig) {
     // New settings page.
-    $page = new admin_settingpage('local_navbarhelpmenu',
-        get_string('pluginname', 'local_navbarhelpmenu', null, true));
+    $page = new admin_settingpage(
+        'local_navbarhelpmenu',
+        get_string('pluginname', 'local_navbarhelpmenu', null, true)
+    );
 
     if ($ADMIN->fulltree) {
         // Create insert menu items widget.
-        $setting = new admin_setting_configtextarea('local_navbarhelpmenu/menuitems',
+        $setting = new admin_setting_configtextarea(
+            'local_navbarhelpmenu/menuitems',
             get_string('settingmenuitems', 'local_navbarhelpmenu', null, true),
-            get_string('settingmenuitemsdesc', 'local_navbarhelpmenu', null, true), '', PARAM_RAW);
+            get_string('settingmenuitemsdesc', 'local_navbarhelpmenu', null, true),
+            '',
+            PARAM_RAW
+        );
         $page->add($setting);
     }
 
