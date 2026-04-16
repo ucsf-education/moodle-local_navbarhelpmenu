@@ -68,7 +68,7 @@ class behat_local_navbarhelpmenu extends behat_base {
     public function help_menu_items_shouldnt_be_visible(): void {
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
-        $xpath .= '/div[contains(@class, "dropdown-menu")]';
+        $xpath .= '/ul[contains(@class, "dropdown-menu")]';
 
         $this->execute("behat_general::should_not_be_visible", [$xpath, "xpath_element"]);
     }
@@ -81,7 +81,7 @@ class behat_local_navbarhelpmenu extends behat_base {
     public function help_menu_items_should_be_visible(): void {
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
-        $xpath .= '/div[contains(@class, "dropdown-menu")]';
+        $xpath .= '/ul[contains(@class, "dropdown-menu")]';
 
         $this->execute("behat_general::should_be_visible", [$xpath, "xpath_element"]);
     }
@@ -109,8 +109,8 @@ class behat_local_navbarhelpmenu extends behat_base {
     public function i_should_see_x_help_menu_items(string $expectedcount): void {
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
-        $xpath .= '/div[contains(@class, "dropdown-menu")]';
-        $xpath .= '/a[contains(@class, "dropdown-item")]';
+        $xpath .= '/ul[contains(@class, "dropdown-menu")]';
+        $xpath .= '/li/a[contains(@class, "dropdown-item")]';
         try {
             $elements = $this->find_all('xpath', $xpath);
         } catch (ElementNotFoundException) {
@@ -183,14 +183,14 @@ class behat_local_navbarhelpmenu extends behat_base {
 
         $xpath = '//div[@id="usernavigation"]';
         $xpath .= '/div[contains(@class, "local-navbarhelpmenu")]';
-        $xpath .= '/div[contains(@class, "dropdown-menu")]';
-        $xpath .= "/a[$position]";
+        $xpath .= '/ul[contains(@class, "dropdown-menu")]';
+        $xpath .= "/li[$position]/a";
 
-        $menuitem = $this->find('xpath', $xpath);
+        $menuitemlink = $this->find('xpath', $xpath);
 
-        $title = trim($menuitem->getText());
-        $link = trim($menuitem->getAttribute('href'));
-        $linktarget = trim($menuitem->getAttribute('target'));
+        $title = trim($menuitemlink->getText());
+        $url = trim($menuitemlink->getAttribute('href'));
+        $linktarget = trim($menuitemlink->getAttribute('target'));
 
         if ($title !== $expectedtitle) {
             throw new ExpectationException(
@@ -199,9 +199,9 @@ class behat_local_navbarhelpmenu extends behat_base {
             );
         }
 
-        if ($link !== $expectedlink) {
+        if ($url !== $expectedlink) {
             throw new ExpectationException(
-                "Menu item $position links to '$link'. Expected link '$expectedlink'.",
+                "Menu item $position links to '$url'. Expected link '$expectedlink'.",
                 $this->getSession()->getDriver()
             );
         }
