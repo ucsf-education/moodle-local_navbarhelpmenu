@@ -38,21 +38,21 @@
 }}
 {{#hasitems}}
     <div class="local-navbarhelpmenu dropdown">
-        <span class="dropdown-toggle nav-link"
+        <button class="dropdown-toggle nav-link"
               tabindex="0"
               id="local-navbarhelpmenu-dropdown-toggle"
-              data-toggle="dropdown"
               aria-haspopup="true"
               aria-expanded="false"
               aria-label="{{#str}}togglehelpmenu, local_navbarhelpmenu{{/str}}"
-              role="button"
+              type="button"
+              data-bs-toggle="dropdown"
         >
             {{#pix}}e/help{{/pix}}
-        </span>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="local-navbarhelpmenu-dropdown-toggle" role="menu">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="local-navbarhelpmenu-dropdown-toggle" role="menu">
             {{#items}}
-                <a class="dropdown-item" href="{{url}}" role="menuitem" tabindex="-1" target="{{target}}">{{title}}</a>
+                <li role="menuitem"><a class="dropdown-item" href="{{url}}" tabindex="-1" target="{{target}}">{{title}}</a></li>
             {{/items}}
-        </div>
+        </ul>
     </div>
 {{/hasitems}}
