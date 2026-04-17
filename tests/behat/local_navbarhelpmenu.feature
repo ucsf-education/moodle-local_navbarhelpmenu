@@ -35,6 +35,22 @@ Feature: Configuring the navbarhelpmenu plugin
     When I click on the help menu toggle
     Then help menu items shouldn't be visible
 
+  @javascript @accessibility
+  Scenario: The help menu is accessible
+    When I log in as "admin"
+    And I navigate to "Appearance > Navbar Help Menu" in site administration
+    And I set the field "id_s_local_navbarhelpmenu_menuitems" to multiline:
+    """
+    https://moodle.org|Moodle|true
+    /user/contactsitesupport.php|Site Support
+    """
+    And I press "Save"
+    Then I should see the help menu in the navbar
+    And the ".local-navbarhelpmenu" "css_element" should meet accessibility standards with 'best-practice' extra tests
+    When I click on the help menu toggle
+    Then I should see 2 help menu items
+    And the ".local-navbarhelpmenu" "css_element" should meet accessibility standards with 'best-practice' extra tests
+
   Scenario: Configuring the help menu with valid items
     When I log in as "admin"
     And I navigate to "Appearance > Navbar Help Menu" in site administration
