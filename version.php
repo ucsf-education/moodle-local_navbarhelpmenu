@@ -27,4 +27,6 @@ $plugin->component = 'local_navbarhelpmenu';
 $plugin->version = 2026092200;
 $plugin->requires = 2026042000;
 $plugin->supported = [502, 502];
+$plugin->release = 'v5.2.0';
+$plugin->maturity = MATURITY_STABLE;
 $plugin->maturity = MATURITY_STABLE;
